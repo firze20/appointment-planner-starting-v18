@@ -39,8 +39,8 @@ export const ContactsPage = (props) => {
   contacts array variable in props
   */
 
-   // useEffect hook that checks if the contact name is a duplicate 
-   useEffect(() => {
+  // useEffect hook that checks if the contact name is a duplicate
+  useEffect(() => {
     const nameIsDuplicate = () => {
       const nameFound = contacts.find((contact) => contact.name === name);
       if (nameFound !== undefined) {
@@ -54,12 +54,15 @@ export const ContactsPage = (props) => {
     } else {
       setDuplicateName(false);
     }
-  }, [name, contacts, duplicateName])
+  }, [name, contacts, duplicateName]);
 
   return (
     <div>
       <section>
-        <h2>Add Contact {duplicateName ? " - This contact name already exists" : ""} </h2>
+        <h2>
+          Add Contact{" "}
+          {duplicateName ? " - This contact name already exists" : ""}{" "}
+        </h2>
         <ContactForm
           name={name}
           setName={setName}
@@ -73,13 +76,7 @@ export const ContactsPage = (props) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        {contacts.map((contact) => (
-          <ul>
-            <li key={uuidv4()}>Name: {contact.name}</li>
-            <li key={uuidv4()}>Phone: {contact.phoneNumber}</li>
-            <li key={uuidv4()}>Email: {contact.email}</li>
-          </ul>
-        ))}
+        <TileList tiles={contacts} />
       </section>
     </div>
   );
